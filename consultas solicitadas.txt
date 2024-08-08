@@ -1,0 +1,55 @@
+As informações de todos os artistas inseridos na base de dados
+por ordem alfabética.
+
+SELECT * 
+FROM banda 
+ORDER BY 
+nome_banda
+
+As informações de todos os álbuns inseridos na base de dados
+por ordem alfabética.
+
+SELECT * FROM album
+ORDER BY 
+nome_album
+
+Todos os álbuns lançados pelos Dire Straits por ordem cronológica.
+
+SELECT * FROM album where nome_banda = 'Dire Straits'
+ORDER BY ano_lancamento
+
+Todas as canções do álbum “Reckless 30th Anniversary”, tal como
+aparecem no álbum.
+
+SELECT * 
+FROM musica 
+where 
+album_ID_FK = '4';
+
+Todas as informações relevantes da música “Walk of Life".
+
+SELECT 
+    a.titulo AS `Música`,
+    a.duracao AS `Duração da música em minutos`,
+    a.album_ID_FK AS `Número do Álbum`,
+    b.nome_album AS `Nome do Álbum`,
+    a.compositor_ID_FK AS `Número do Compositor`,
+    c.nome_compositor AS `Nome do Compositor`,
+    a.banda_ID_FK AS `Número da Banda`,
+    d.nome_banda AS `Nome da Banda`,
+    a.produtor_ID_FK AS `Número do Produtor`,
+    e.nome_produtor AS `Nome do Produtor`,
+    a.letra AS `Letra da Música` 
+FROM 
+    musica a
+    JOIN album b ON a.album_ID_FK = b.album_ID
+    JOIN compositor c ON a.compositor_ID_FK = c.compositor_ID
+    JOIN banda d ON a.banda_ID_FK = d.banda_ID
+    JOIN produtor e ON a.produtor_ID_FK = e.produtor_ID
+WHERE 
+    a.musica_ID = '23';
+
+
+
+
+
